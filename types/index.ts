@@ -1,10 +1,10 @@
-export type User = {
+export type UserType = {
   id: string;
   name: string;
   avatar: string;
 };
 
-export type Project = {
+export type ProjectType = {
   id: string;
   name: string;
   description: string;
@@ -12,14 +12,14 @@ export type Project = {
   updatedAt: string;
 };
 
-export type TaskStatus = "OPEN" | "IN_PROGRESS" | "IN_REVIEW" | "DONE";
+export type TaskStatusType = "OPEN" | "IN_PROGRESS" | "IN_REVIEW" | "DONE";
 
-export type Task = {
+export type TaskType = {
   id: string;
   title: string;
   description: string;
-  assignee: User | null;
-  status: TaskStatus;
+  assignee: UserType | null;
+  status: TaskStatusType;
   storyPoints: number;
   startDate: string | null;
   dueDate: string | null;
@@ -28,15 +28,15 @@ export type Task = {
   projectId: string;
 };
 
-export type Column = {
-  id: TaskStatus;
+export type ColumnType = {
+  id: TaskStatusType;
   title: string;
-  tasks: Task[];
+  tasks: TaskType[];
 };
 
-export type Board = {
-  columns: Column[];
-  tasks: Task[];
-  users: User[];
-  project: Project;
+export type BoardType = {
+  columns: ColumnType[];
+  tasks: TaskType[];
+  users: UserType[];
+  project: ProjectType;
 };
