@@ -1,6 +1,6 @@
-import { Task, User, TaskStatus, Project } from "../types";
+import { TaskType, UserType, TaskStatusType, ProjectType } from "@/types";
 
-export const mockUsers: User[] = [
+export const mockUsers: UserType[] = [
   {
     id: "1",
     name: "John Doe",
@@ -33,7 +33,7 @@ export const mockUsers: User[] = [
   },
 ];
 
-export const mockProjects: Project[] = [
+export const mockProjects: ProjectType[] = [
   {
     id: "p1",
     name: "Web Application",
@@ -50,7 +50,7 @@ export const mockProjects: Project[] = [
   },
 ];
 
-export const mockTasks: Task[] = [
+export const mockTasks: TaskType[] = [
   {
     id: "1",
     title: "Implement authentication",
@@ -157,7 +157,7 @@ export const mockTasks: Task[] = [
   },
 ];
 
-export const mockColumns: { id: TaskStatus; title: string }[] = [
+export const mockColumns: { id: TaskStatusType; title: string }[] = [
   { id: "OPEN", title: "Open" },
   { id: "IN_PROGRESS", title: "In Progress" },
   { id: "IN_REVIEW", title: "In Review" },
