@@ -1,6 +1,8 @@
 import { UserType } from "../types";
 import { Plus } from "lucide-react";
 import { Button } from "./ui/Button";
+import Image from "next/image";
+
 interface BoardHeaderProps {
   users: UserType[];
   selectedUsers: string[];
@@ -46,11 +48,13 @@ export default function BoardHeader({
             }`}
             onClick={() => onUserSelect(user.id)}
           >
-            <img
+            <Image
               src={user.avatar}
               alt={user.name}
               className="h-8 w-8 rounded-full"
               title={user.name}
+              width={32}
+              height={32}
             />
             <span className="hidden md:inline-block text-sm text-gray-700 px-2">
               {user.name}

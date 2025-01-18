@@ -10,6 +10,7 @@ import { Dropdown } from "./ui/Dropdown";
 import { InputNumber } from "./ui/InputNumber";
 import { Calendar } from "./ui/Calendar";
 import { Button } from "./ui/Button";
+import Image from "next/image";
 
 interface TaskFormProps {
   isOpen: boolean;
@@ -102,18 +103,36 @@ export default function TaskForm({
               options={users}
               optionLabel="name"
               optionValue="id"
-              itemTemplate={(option) => (
-                <div className="flex items-center gap-2">
-                  <img src={option.avatar} className="h-6 w-6 rounded-full" />
-                  <span>{option.name}</span>
-                </div>
-              )}
-              valueTemplate={(option) => (
-                <div className="flex items-center gap-2">
-                  <img src={option.avatar} className="h-6 w-6 rounded-full" />
-                  <span>{option.name}</span>
-                </div>
-              )}
+              itemTemplate={(option) => {
+                const user = option as UserType;
+                return (
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={user.avatar}
+                      alt={user.name}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 rounded-full"
+                    />
+                    <span>{user.name}</span>
+                  </div>
+                );
+              }}
+              valueTemplate={(option) => {
+                const user = option as UserType;
+                return (
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={user.avatar}
+                      alt={user.name}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 rounded-full"
+                    />
+                    <span>{user.name}</span>
+                  </div>
+                );
+              }}
               showClear
             />
           </div>
@@ -143,7 +162,10 @@ export default function TaskForm({
                   setFormData({ ...formData, startDate: e.target.value });
                   // Reset due date if it becomes invalid
                   if (formData.dueDate && e.target.value > formData.dueDate) {
-                    setFormData(prev => ({ ...prev, dueDate: e.target.value }));
+                    setFormData((prev) => ({
+                      ...prev,
+                      dueDate: e.target.value,
+                    }));
                   }
                 }}
                 max={formData.dueDate || undefined}
@@ -165,7 +187,12 @@ export default function TaskForm({
             </div>
           </div>
           <div className="flex items-center justify-between md:justify-end gap-2 mt-4">
-            <Button className="w-full md:w-28" variant="outline" type="button" onClick={onClose}>
+            <Button
+              className="w-full md:w-28"
+              variant="outline"
+              type="button"
+              onClick={onClose}
+            >
               Cancel
             </Button>
             <Button className="w-full md:w-28" type="submit">

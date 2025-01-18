@@ -1,5 +1,6 @@
 import { TaskType } from "../types";
 import { DraggableProvided } from "@hello-pangea/dnd";
+import Image from "next/image";
 
 interface TaskCardProps {
   task: TaskType;
@@ -20,10 +21,12 @@ export default function TaskCard({ task, provided, onClick }: TaskCardProps) {
       <p className="mt-1 text-sm text-gray-600">{task.description}</p>
       {task.assignee && (
         <div className="mt-2 flex items-center space-x-2">
-          <img
+          <Image
             src={task.assignee.avatar}
             alt={task.assignee.name}
             className="h-6 w-6 rounded-full"
+            width={24}
+            height={24}
           />
           <span className="text-sm text-gray-600">{task.assignee.name}</span>
         </div>
@@ -31,9 +34,11 @@ export default function TaskCard({ task, provided, onClick }: TaskCardProps) {
       <div className="mt-2 flex items-center justify-between text-sm text-gray-500">
         <span>{task.storyPoints} points</span>
         <span>
-          {task.dueDate ? new Date(task.dueDate).toLocaleDateString('tr-TR') : ""}
+          {task.dueDate
+            ? new Date(task.dueDate).toLocaleDateString("tr-TR")
+            : ""}
         </span>
       </div>
     </div>
   );
-} 
+}

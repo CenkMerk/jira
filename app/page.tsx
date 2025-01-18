@@ -1,19 +1,53 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { mockProjects } from "@/data/mocData";
-import { useBoard } from "@/hooks/useBoard";
+import { getInitialBoard } from "@/helpers/getInitialBoard";
 import Link from "next/link";
+import { BoardType } from "@/types";
 
 export default function Home() {
-  // Calculate project statistics using useBoard for each project
-  const projectStats = mockProjects.map((project) => {
-    const { stats } = useBoard(project.id);
+  const [projectBoards, setProjectBoards] = useState<{ [key: string]: BoardType }>(() => {
+    // Client-side only code
+    if (typeof window !== 'undefined') {
+      const boards: { [key: string]: BoardType } = {};
+      mockProjects.forEach(project => {
+        const savedBoard = localStorage.getItem(`board-${project.id}`);
+        boards[project.id] = savedBoard ? JSON.parse(savedBoard) : getInitialBoard(project.id);
+      });
+      return boards;
+    }
+    return {};
+  });
+
+  useEffect(() => {
+    // Initialize or update boards on client-side
+    const initialBoards: { [key: string]: BoardType } = {};
+    mockProjects.forEach(project => {
+      const savedBoard = localStorage.getItem(`board-${project.id}`);
+      initialBoards[project.id] = savedBoard ? JSON.parse(savedBoard) : getInitialBoard(project.id);
+    });
+    setProjectBoards(initialBoards);
+  }, []);
+
+  const projectStats = mockProjects.map(project => {
+    const board = projectBoards[project.id];
+    if (!board) return { ...project, totalTasks: 0, completedTasks: 0, inProgressTasks: 0, progress: 0 };
+
+    const totalTasks = board.tasks.length;
+    const completedTasks = board.tasks.filter(task => task.status === "DONE").length;
+    const inProgressTasks = board.tasks.filter(task => task.status === "IN_PROGRESS").length;
+    const progress = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
     return {
       ...project,
-      ...stats,
+      totalTasks,
+      completedTasks,
+      inProgressTasks,
+      progress
     };
   });
-  
+
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-7xl mx-auto">
