@@ -53,6 +53,8 @@ export default function BoardHeader({
               alt={user.name}
               className="h-8 w-8 rounded-full"
               title={user.name}
+              width={32}
+              height={32}
             />
             <span className="hidden md:inline-block text-sm text-gray-700 px-2">
               {user.name}
