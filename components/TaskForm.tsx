@@ -136,11 +136,17 @@ export default function TaskForm({
               <Label htmlFor="startDate">Start Date</Label>
               <Calendar
                 id="startDate"
+                required
                 type="date"
                 value={formData.startDate || ""}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFormData({ ...formData, startDate: e.target.value })
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFormData({ ...formData, startDate: e.target.value });
+                  // Reset due date if it becomes invalid
+                  if (formData.dueDate && e.target.value > formData.dueDate) {
+                    setFormData(prev => ({ ...prev, dueDate: e.target.value }));
+                  }
+                }}
+                max={formData.dueDate || undefined}
               />
             </div>
 
@@ -149,10 +155,12 @@ export default function TaskForm({
               <Calendar
                 id="dueDate"
                 type="date"
+                required
                 value={formData.dueDate || ""}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setFormData({ ...formData, dueDate: e.target.value })
                 }
+                min={formData.startDate || undefined}
               />
             </div>
           </div>
