@@ -21,7 +21,7 @@ const Dialog: React.FC<DialogProps> = ({
       <div className="fixed inset-0 bg-black/50" onClick={onClose} />
 
       {/* Dialog content */}
-      <div className="relative bg-white rounded-lg p-6 w-full max-w-md">
+      <div className="relative bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto mx-4">
         {title && <h2 className="text-lg font-semibold mb-4">{title}</h2>}
 
         {/* Close button */}
