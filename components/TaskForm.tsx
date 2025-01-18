@@ -131,7 +131,7 @@ export default function TaskForm({
               }
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label htmlFor="startDate">Start Date</Label>
               <Calendar
@@ -164,11 +164,11 @@ export default function TaskForm({
               />
             </div>
           </div>
-          <div className="flex items-center justify-end gap-2 mt-4">
-            <Button variant="outline" type="button" onClick={onClose}>
+          <div className="flex items-center justify-between md:justify-end gap-2 mt-4">
+            <Button className="w-full md:w-28" variant="outline" type="button" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit">
+            <Button className="w-full md:w-28" type="submit">
               {task ? "Save Changes" : "Create Task"}
             </Button>
           </div>
