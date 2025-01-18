@@ -57,6 +57,4 @@ The application uses LocalStorage for data persistence, allowing users to:
 
 The project is deployed on Vercel and can be accessed at [https://jira-topaz.vercel.app/](https://jira-topaz.vercel.app/)
 
-## License
 
-MIT License - feel free to use this project for your own purposes.
