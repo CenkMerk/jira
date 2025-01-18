@@ -18,7 +18,7 @@ export default function BoardColumn({ id, title, tasks, onTaskClick }: BoardColu
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="space-y-1 sm:space-y-2 min-h-[100px]"
+            className="space-y-1 sm:space-y-2 min-h-[100px] flex flex-col h-full"
           >
             {tasks.map((task, index) => (
               <Draggable key={task.id} draggableId={task.id} index={index}>
