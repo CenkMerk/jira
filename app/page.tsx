@@ -5,15 +5,16 @@ import { useBoard } from "@/hooks/useBoard";
 import Link from "next/link";
 
 export default function Home() {
-  // Calculate project statistics using useBoard for each project
-  const projectStats = mockProjects.map((project) => {
-    const { stats } = useBoard(project.id);
-    return {
-      ...project,
-      ...stats,
-    };
-  });
-  
+  // Her proje için ayrı hook çağrısı
+  const project1Board = useBoard("p1");
+  const project2Board = useBoard("p2");
+
+  // Proje istatistiklerini birleştir
+  const projectStats = [
+    { ...mockProjects[0], ...project1Board.stats },
+    { ...mockProjects[1], ...project2Board.stats },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-7xl mx-auto">
