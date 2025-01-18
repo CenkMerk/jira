@@ -11,6 +11,7 @@ import { InputNumber } from "./ui/InputNumber";
 import { Calendar } from "./ui/Calendar";
 import { Button } from "./ui/Button";
 import Image from "next/image";
+
 interface TaskFormProps {
   isOpen: boolean;
   onClose: () => void;
@@ -102,26 +103,36 @@ export default function TaskForm({
               options={users}
               optionLabel="name"
               optionValue="id"
-              itemTemplate={(option) => (
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={option.avatar}
-                    alt={option.name}
-                    className="h-6 w-6 rounded-full"
-                  />
-                  <span>{option.name}</span>
-                </div>
-              )}
-              valueTemplate={(option) => (
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={option.avatar}
-                    alt={option.name}
-                    className="h-6 w-6 rounded-full"
-                  />
-                  <span>{option.name}</span>
-                </div>
-              )}
+              itemTemplate={(option) => {
+                const user = option as UserType;
+                return (
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={user.avatar}
+                      alt={user.name}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 rounded-full"
+                    />
+                    <span>{user.name}</span>
+                  </div>
+                );
+              }}
+              valueTemplate={(option) => {
+                const user = option as UserType;
+                return (
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={user.avatar}
+                      alt={user.name}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 rounded-full"
+                    />
+                    <span>{user.name}</span>
+                  </div>
+                );
+              }}
               showClear
             />
           </div>
