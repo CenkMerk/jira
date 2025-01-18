@@ -1,5 +1,6 @@
 import { UserType } from "../types";
 import { Plus } from "lucide-react";
+import { Button } from "./ui/Button";
 interface BoardHeaderProps {
   users: UserType[];
   selectedUsers: string[];
@@ -22,13 +23,13 @@ export default function BoardHeader({
           <h1 className="text-3xl font-bold text-gray-900">{projectName}</h1>
           <p className="text-gray-600 mt-1">Task Board</p>
         </div>
-        <button
+        <Button
           onClick={onNewTask}
-          className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+          className="bg-indigo-600 hover:bg-indigo-700"
         >
           <Plus className="mr-2" />
           New Task
-        </button>
+        </Button>
       </div>
       <div className="mt-4 flex space-x-2">
         {users.map((user) => (
@@ -51,10 +52,12 @@ export default function BoardHeader({
               className="h-8 w-8 rounded-full"
               title={user.name}
             />
-            <span className="hidden md:inline-block text-sm text-gray-700 px-2">{user.name}</span>
+            <span className="hidden md:inline-block text-sm text-gray-700 px-2">
+              {user.name}
+            </span>
           </div>
         ))}
       </div>
     </div>
   );
-} 
+}
