@@ -27,24 +27,21 @@ export interface DropdownProps
 }
 
 const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
-  (
-    {
-      className,
-      containerClassName,
-      value,
-      onChange,
-      options = [],
-      optionLabel = "label",
-      optionValue = "value",
-      placeholder = "Select an option",
-      disabled,
-      itemTemplate,
-      valueTemplate,
-      showClear,
-      ...props
-    },
-    ref
-  ) => {
+  ({
+    className,
+    containerClassName,
+    value,
+    onChange,
+    options = [],
+    optionLabel = "label",
+    optionValue = "value",
+    placeholder = "Select an option",
+    disabled,
+    itemTemplate,
+    valueTemplate,
+    showClear,
+    ...props
+  }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [selectedOption, setSelectedOption] =
       React.useState<DropdownOption | null>(null);
