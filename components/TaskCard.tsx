@@ -25,6 +25,8 @@ export default function TaskCard({ task, provided, onClick }: TaskCardProps) {
             src={task.assignee.avatar}
             alt={task.assignee.name}
             className="h-6 w-6 rounded-full"
+            width={24}
+            height={24}
           />
           <span className="text-sm text-gray-600">{task.assignee.name}</span>
         </div>
