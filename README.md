@@ -20,6 +20,7 @@ A Jira-like project management application built with Next.js, featuring drag-an
 - Tailwind CSS
 - @hello-pangea/dnd (for drag and drop functionality)
 - LocalStorage API
+- Custom UI Component Collection (no external UI libraries)
 - Vercel (for deployment)
 
 ## Local Development
